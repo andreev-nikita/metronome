@@ -1,3 +1,4 @@
+//Анимация SVG метронома
 let startAngle = 20, stopAngle = -20, tmpAngle = -20;
 
 let startAnimation = (latency) => {
