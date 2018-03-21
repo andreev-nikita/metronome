@@ -1,3 +1,10 @@
 #Ignore WebStorm Files
 
 .idea/
+
+#Ignore Babel Files
+
+js/dist/
+js/node_modules/
+js/.babelrc
+js/package.json
