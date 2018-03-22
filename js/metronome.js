@@ -163,7 +163,7 @@ class TickTack {
 
 
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)(); // Создаем аудио контекст
-const sounds = new Sounds(audioCtx, ['js/src/samples/tick1.wav', 'js/src/samples/tick2.wav', 'js/src/samples/tick3.wav']);  // Создаем аудио буфер из сэмплов
+const sounds = new Sounds(audioCtx, ['js/samples/tick1.wav', 'js/samples/tick2.wav', 'js/samples/tick3.wav']);  // Создаем аудио буфер из сэмплов
 let tickTack = new TickTack(audioCtx, document.getElementById('tempo').value, sounds, 0.5, [0], []);   //Объявление экзэмпляра класса TickTack
 
 //Старт - стоп
