@@ -36,6 +36,7 @@
                 <h2>Громкость:</h2>
                 <input class="volumeRange" id="volume" type="range" min="1" max="100" step="1" value="50" oninput="changeVolume(this.value)">
                 <button class="startButton" id="startbutton" onclick="this.innerText = toggleSound(this.innerText)">START</button><br>
+
             </div>
             <div class="clearfix">
                 <svg id="body" xmlns="http://www.w3.org/2000/svg" width="480" height="688" viewBox="0 0 480 688">
@@ -96,10 +97,7 @@
         </div>
         <div class="loading"></div>
     </div>
-    <script
-            src="https://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/metronome.js"></script>
     <script src="js/visualisation.js"></script>
 </body>

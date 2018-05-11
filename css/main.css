@@ -1,15 +1,5 @@
-@font-face {
-    font-family: "Gotham Book";
-    src: url(../fonts/GothamBook.ttf) format("truetype");
-}
-
-@font-face {
-    font-family: "Gotham Medium";
-    src: url(../fonts/GothamMedium.ttf) format("truetype");
-}
-
 * {
-    font-family: "Gotham Book", sans-serif;
+    font-family: Arial, sans-serif;
     font-size: 13px;
 }
 

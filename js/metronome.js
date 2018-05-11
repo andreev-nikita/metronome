@@ -50,6 +50,7 @@ class TickTack {
         this.gain.gain.setValueAtTime(volume, this.audioCtx.currentTime);
         this.gain.connect(this.audioCtx.destination);
         this.createMainPattern();
+        this.currentLatency = null;
     }
 
     //Создание новой аудио ноды
@@ -99,8 +100,9 @@ class TickTack {
                 //Воспроизведение
                 nextTickSoundIndex = thisLabel._mainPattern[soundIndex()];
                 thisLabel.init(nextTickSoundIndex);
-                thisLabel.tick.start(calculateCurrentLatency());
-                thisLabel.tick.stop(calculateCurrentLatency() + thisLabel.noteLength);
+                thisLabel.currentLatency = calculateCurrentLatency();
+                thisLabel.tick.start(thisLabel.currentLatency);
+                thisLabel.tick.stop(thisLabel.currentLatency + thisLabel.noteLength);
                 thisLabel.tick.onended = circlePlaying;
 
             }
@@ -111,7 +113,7 @@ class TickTack {
     //Остановка воспроизведения
     stopTick() {
         this.switcher = false;
-        this.tick.stop(this.audioCtx.currentTime);
+        this.tick.disconnect();
         this.tick.onended = null;
     }
 
@@ -166,10 +168,17 @@ const audioCtx = new (window.AudioContext || window.webkitAudioContext)(); // С
 const sounds = new Sounds(audioCtx, ['js/samples/tick1.wav', 'js/samples/tick2.wav', 'js/samples/tick3.wav']);  // Создаем аудио буфер из сэмплов
 let tickTack = new TickTack(audioCtx, document.getElementById('tempo').value, sounds, 0.5, [0], []);   //Объявление экзэмпляра класса TickTack
 
+
 //Старт - стоп
 function toggleSound(tmp){
     if(tmp === 'START') {
-        tickTack.playTick(0);
+        if (audioCtx.state !== 'running') {
+            audioCtx.resume().then( () => {
+                tickTack.playTick(0);
+            });
+        } else {
+            tickTack.playTick(0);
+        }
         return 'STOP';
     } else {
         tickTack.stopTick();
